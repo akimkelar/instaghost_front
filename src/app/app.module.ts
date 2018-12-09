@@ -10,7 +10,7 @@ import {AppConfigService} from './app-config.service';
 import {AuthGuardService} from './auth/auth-guard.service';
 
 export function initializeApp(appConfig: AppConfigService) {
-  return () => { appConfig.load(); };
+  return () => appConfig.load();
 }
 @NgModule({
   declarations: [

@@ -16,7 +16,6 @@ export class AppConfigService {
   }
 
   load() {
-    console.log('asd');
     return new Promise<void>((resolve, reject) => {
       const path = this.configPath();
       this.http.get(path).toPromise().then((response: AppConfig) => {
