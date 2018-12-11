@@ -8,13 +8,21 @@ import { AppComponent } from './app.component';
 import { APP_INITIALIZER } from '@angular/core';
 import {AppConfigService} from './app-config.service';
 import {AuthGuardService} from './auth/auth-guard.service';
+import { SigninComponent } from './signin/signin.component';
+import { DashboardComponent } from './_layout/dashboard/dashboard.component';
+import { FormComponent } from './_layout/form/form.component';
+import { FollowersComponent } from './followers/followers.component';
 
 export function initializeApp(appConfig: AppConfigService) {
   return () => appConfig.load();
 }
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    SigninComponent,
+    DashboardComponent,
+    FormComponent,
+    FollowersComponent
   ],
   imports: [
     BrowserModule,

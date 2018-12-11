@@ -5,11 +5,5 @@ import {Component, OnInit} from '@angular/core';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
-  title = 'instaghost';
-
-  ngOnInit(): void {
-    const _g = window as any;
-    _g.feather.replace();
-  }
+export class AppComponent {
 }
