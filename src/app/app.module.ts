@@ -12,6 +12,7 @@ import { SigninComponent } from './signin/signin.component';
 import { DashboardComponent } from './_layout/dashboard/dashboard.component';
 import { FormComponent } from './_layout/form/form.component';
 import { FollowersComponent } from './followers/followers.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 export function initializeApp(appConfig: AppConfigService) {
   return () => appConfig.load();
@@ -28,6 +29,8 @@ export function initializeApp(appConfig: AppConfigService) {
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     AppConfigService,

@@ -24,7 +24,7 @@ export class AuthService {
         'Authorization': AppConfigService.settings.api.authKey,
       })
     };
-    return this.http.post<Validate>(this.api.path.authToken, {user: user, token: token}, httpOptions)
+    return this.http.post<Validate>(this.api.path.authTokenCheck, {user: user, token: token}, httpOptions)
       .pipe(map(res => res.valid));
   }
 }
