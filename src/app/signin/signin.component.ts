@@ -34,6 +34,7 @@ export class SigninComponent implements OnInit {
     };
     if (this.form.valid) {
       this.wait = true;
+      this.form.disable();
       this.http.post(
         this.api.path.authToken,
         {
@@ -45,6 +46,7 @@ export class SigninComponent implements OnInit {
         console.log(response);
       }).finally(() => {
         this.wait = false;
+        this.form.enable();
       });
     }
   }

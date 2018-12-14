@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {AuthGuardService} from './auth/auth-guard.service';
-import {SigninComponent} from './signin/signin.component';
 import {FormComponent} from './_layout/form/form.component';
 import {DashboardComponent} from './_layout/dashboard/dashboard.component';
 import {FollowersComponent} from './followers/followers.component';
+import {AuthComponent} from './auth/auth.component';
+import {AuthRedirectComponent} from './auth-redirect/auth-redirect.component';
 
 const routes: Routes = [
   {
@@ -20,7 +21,10 @@ const routes: Routes = [
     path: '',
     component: FormComponent,
     children: [
-      {path: 'login', component: SigninComponent},
+      {path: 'auth', children: [
+        {path: '', pathMatch: 'full', component: AuthComponent},
+        {path: 'redirect', component: AuthRedirectComponent},
+      ]},
     ]
   },
 ];

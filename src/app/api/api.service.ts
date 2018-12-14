@@ -8,7 +8,6 @@ export class ApiService {
   public basePath = environment.apiUrl;
   public path = {
     authToken:  this.basePath + '/auth/token',
-    authTokenCheck: this.basePath + '/auth/token-check'
   };
 
   constructor() { }

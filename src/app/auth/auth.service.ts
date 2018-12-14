@@ -10,21 +10,30 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class AuthService {
-  private user = 'username';
-  private token = 'token';
+  private access_token = 'access_token';
+  private memorization = {};
 
   constructor(private api: ApiService, private http: HttpClient) { }
 
-  public isAuthenticated(): Observable<boolean> {
-    const user = localStorage.getItem(this.user);
-    const token = localStorage.getItem(this.token);
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': AppConfigService.settings.api.authKey,
-      })
-    };
-    return this.http.post<Validate>(this.api.path.authTokenCheck, {user: user, token: token}, httpOptions)
-      .pipe(map(res => res.valid));
+  isAuthenticated(): Observable<boolean> | boolean {
+    const access_token = localStorage.getItem(this.access_token);
+    if (typeof this.memorization[access_token] === 'undefined') {
+      const httpOptions = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'Authorization': AppConfigService.settings.api.authKey,
+        })
+      };
+      const result = this.http.post<Validate>(this.api.path.authToken, {access_token: access_token}, httpOptions)
+        .pipe(map(res => res.valid))
+        .pipe(map(auth => this.memorization[access_token] = auth));
+      return result;
+    } else {
+      return this.memorization[access_token];
+    }
+  }
+
+  setToken(access_token) {
+    localStorage.setItem(this.access_token, access_token);
   }
 }
